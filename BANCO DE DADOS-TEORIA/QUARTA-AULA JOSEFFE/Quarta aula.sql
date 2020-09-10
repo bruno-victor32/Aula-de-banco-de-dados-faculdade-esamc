@@ -76,8 +76,9 @@ select a.id,
        from tb_empregado a inner join tb_banco b on (a.id_banco = b.id)
 /*Explicação desse comando:Quero exibir o id e o nome do empregado e o nome do banco da tabela tb_banco eu coloco 
 from especificando de que tabela vem,primeiro vem da tabela tb_empregado que tem relação com a tb_banco  e eu ja dou um apelido a 
-ela que e um alias eu falo que ela vai ser a tabela "a" e eu coloco no id a porque vai vim da tabela a que e tb_empregado e tb_banco tbm vai ter um apelido que e 'b"
-e eu utilizo "on" para vincular uma com a outra e em seguida eu coloco a.id_banco que tb_empregado tem um campo chamado id_banco que está relacionado com b.id que e o campo id da tabela tb_banco*/
+ela que e um alias eu falo que ela vai ser a tabela "a" e eu coloco no id a porque vai vim da tabela a que e tb_empregado e tb_banco 
+tbm vai ter um apelido que e 'b" e eu utilizo "on" para vincular uma com a outra e em seguida eu coloco a.id_banco que tb_empregado 
+tem um campo chamado id_banco que está relacionado com b.id que e o campo id da tabela tb_banco*/
        
 /*Com o left join dá para pegar valores nulos e não valores nulos*/
 select a.id,
@@ -85,9 +86,10 @@ select a.id,
        b.nome
        from tb_empregado a left join tb_banco b on (a.id_banco = b.id)
        
-/*Quando usar o left join ou inner join,depende da modelagem,ou seja,a modelagem vai dizer no sentido por exemplo o objetivo e vincular tb_empregado com a tabela tb_banco
-e eu vou perguntar quem vai fazer o vinculo que no caso e a chave estrangeira id_banco ai vamos saber si essa coluna e not null ou null,no caso na tabela tb_empregado no campo 
-id_banco e null.Quando tiver null sempre iremos usar left join e si for not null iremos usar inner join*/
+/*Quando usar o left join ou inner join,depende da modelagem,ou seja,a modelagem vai dizer no sentido por exemplo o objetivo e
+ vincular tb_empregado com a tabela tb_banco e eu vou perguntar quem vai fazer o vinculo que no caso e a chave estrangeira id_banco
+ ai vamos saber si essa coluna e not null ou null,no caso na tabela tb_empregado no campo id_banco e null.Quando tiver null sempre 
+ iremos usar left join e si for not null iremos usar inner join*/
 
 /*Filtrando os empregados que usam o banco bradesco*/
 select a.id,

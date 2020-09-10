@@ -30,7 +30,8 @@ primary key(codigo),							/*O campo codigo será uma chave primaria*/
 Index fk_tipo(tipo),							/*Define o campo tipo como um indice*/
 index fk_instrutor(instrutor),					/*Define o campo instrutor como um indice*/
 foreign key(tipo) references tipo(codigo),		/*O campo tipo será uma chave estrangeira que ira se relacionar com a tabela "tipo" campo "codigo"*/
-foreign key(instrutor) references instrutor(codigo)/*O CAMPO INSTRUTOR SERÁ UMA CHAVE ESTRANGEIRA QUE IRA SE RELACIONAR COM A TABELA "INSTRUTOR" DE CAMPO "CODIGO"*/
+foreign key(instrutor) references instrutor(codigo)/*O CAMPO INSTRUTOR SERÁ UMA CHAVE ESTRANGEIRA QUE IRA SE RELACIONAR COM A TABELA "INSTRUTOR" 
+DE CAMPO "CODIGO"*/
 );
 
 -- Cria a tabela ALUNO

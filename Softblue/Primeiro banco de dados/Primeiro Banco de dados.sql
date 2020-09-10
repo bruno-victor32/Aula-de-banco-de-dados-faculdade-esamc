@@ -7,8 +7,8 @@ CREATE TABLE funcionarios /*Comando para criar uma tabela que no caso vai ser ch
 (
 	id int unsigned not null auto_increment,
     nome varchar(45) not null,/*STRING que tem o valor variavel de 45 posições e isso e o tamanho maximo*/
-    salario double not null default '0',/*Vai ser do tipo double,quero trabalhar com numeros decimais e ele também e numerico,default '0' si nenhum valor digitado
-    o mysql vai trabalhar com o valor padrão 0 que no caso foi eu que selecionei o valor*/
+    salario double not null default '0',/*Vai ser do tipo double,quero trabalhar com numeros decimais e ele também e numerico,
+    default '0' si nenhum valor digitado o mysql vai trabalhar com o valor padrão 0 que no caso foi eu que selecionei o valor*/
     departamento varchar(45) not null,
     PRIMARY KEY (id)/*A minha chave primaria vai ser o campo "id"*/
 );
@@ -19,7 +19,8 @@ CREATE TABLE veiculos
 	id int unsigned not null auto_increment,
     funcionario_id int unsigned default null,
     veiculo varchar(45) not null default '',/*default '0' vai permitir que o carro ainda não tenha descrição e que um funcionario possa colocar*/
-    placa varchar(10) not null default '',/*default vai ficar vazio caso ninguem preencha vai ficar a placa vazia quando carro novo sai,placa vazia pode placa nula não pode*/
+    placa varchar(10) not null default '',/*default vai ficar vazio caso ninguem preencha vai ficar a placa vazia quando carro 
+    novo sai,placa vazia pode placa nula não pode*/
     PRIMARY KEY (id),/*A minha chave primaria vai ser o campo "id"*/
     CONSTRAINT fk_veiculos_funcionarios FOREIGN KEY (funcionario_id) REFERENCES funcionarios (id)
 );
@@ -34,13 +35,16 @@ CREATE TABLE salarios
 
 ALTER TABLE funcionarios CHANGE COLUMN nome nome_func varchar(50) not null;
 ALTER TABLE funcionarios CHANGE COLUMN nome_func nome varchar(45) not null;
-/*Muito cuidado quando vc altera um campo de varchar que e um campo que recebe nomes e coloca por exemplo um que recebe int ou seja númerico vc pode perde dados*/
+/*Muito cuidado quando vc altera um campo de varchar que e um campo que recebe nomes e coloca por exemplo um que recebe int ou 
+seja númerico vc pode perde dados*/
 
 DROP TABLE salarios;/*Comando para deletar uma tabela*/
 
 CREATE INDEX departamentos ON funcionarios (departamento);
-CREATE INDEX nomes ON funcionarios (nome(6));/*como ele e uma string de 45 posições,eu posso dizer para o mysql que ele não precisa gerenciar as 45 posições e que para mim só importa os 6 primeiros caracteres de cada nome dessa ordenação porque os nomes depois de 6 caracteres
-já estão em uma forma mais ordenada.Por exemlo placa de carro que tem 3 letras e 4 numeros quero um indice que ordene somente por 3 letras que são os 3 primeiros caracteres*/
+CREATE INDEX nomes ON funcionarios (nome(6));/*como ele e uma string de 45 posições,eu posso dizer para o mysql que ele
+ não precisa gerenciar as 45 posições e que para mim só importa os 6 primeiros caracteres de cada nome dessa ordenação porque os 
+ nomes depois de 6 caracteres já estão em uma forma mais ordenada.Por exemlo placa de carro que tem 3 letras e 4 numeros quero um indice que ordene 
+somente por 3 letras que são os 3 primeiros caracteres*/
 
     /*Nota:Vazio e um valor mesmo que um valor vazio*/
     /*Nota:Nulo que dizer omissão de valor*/
@@ -97,7 +101,8 @@ INSERT INTO veiculos (funcionario_id, veiculo, placa) VALUES (1, 'Carro', 'SB-00
 select*from veiculos;
 
 /*Quero passar o carro de id = 2 para a Isabela que tem id=5*/
-/*Quero fazer uma mudança na tabela veiculos muda o proprietario do carro que estava funcionario 1"Fernando' dono do carro com placa SB-002 para funcionario 5 que é Isabela */
+/*Quero fazer uma mudança na tabela veiculos muda o proprietario do carro que estava funcionario 1"Fernando' dono do carro com
+ placa SB-002 para funcionario 5 que é Isabela */
 UPDATE veiculos SET funcionario_id = 3 WHERE id = 2;
 
 /*Inserindo dados na tabela salarios*/

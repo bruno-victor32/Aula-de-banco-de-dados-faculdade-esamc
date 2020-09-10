@@ -25,7 +25,10 @@ default character set utf8mb4 /*O utf8 são caracteres acentuados no padrão da 
 default collate utf8mb4_general_ci;
 
 create table pessoas(
-id int not null auto_increment,/*Estou criando um identificador para a pessoa que vai ser do tipo numerico "Int",meu campo vai ser id,ele vai ser not null porque vc não pode ser um aluno de uma faculdade si vc não tem matricula,ele vai obrigar vc a digitar,a constrain auto-increment a primeira pessoa que eu cadastrar vai ser codigo 1,a segunda vai ser codigo 2,a terceira codigo 3 tudo isso automaticamente*/
+id int not null auto_increment,/*Estou criando um identificador para a pessoa que vai ser do tipo numerico "Int",meu campo 
+vai ser id,ele vai ser not null porque vc não pode ser um aluno de uma faculdade si vc não tem matricula,ele vai obrigar vc a 
+digitar,a constrain auto-increment a primeira pessoa que eu cadastrar vai ser codigo 1,a segunda vai ser codigo 2,a terceira codigo 
+3 tudo isso automaticamente*/
 nome varchar(30) not null, /*NOT NULL indica que esse campo será obrigatorio digitar,vai ter que informar o nome*/
 nascimento date,
 sexo enum ('M','F'),/*Só vai permitir que digite a letra M ou F*/
@@ -43,7 +46,8 @@ primary key (id)/*Para definir o ID como chave primaria eu vou na ultima linha,d
 
 /*Inserindo dados na tabela*/
 insert into pessoas
-(nome,nascimento,sexo,peso,altura,nacionalidade)/*Aqui eu não preciso colocar id,pois está como auto increment que serve para cada vez que uma pessoa nova e cadastrada o proprio sistema decida,defina sequencialmente como o codigo vai ser gerador*/
+(nome,nascimento,sexo,peso,altura,nacionalidade)/*Aqui eu não preciso colocar id,pois está como auto increment que serve para cada
+ vez que uma pessoa nova e cadastrada o proprio sistema decida,defina sequencialmente como o codigo vai ser gerador*/
 values
 ('Gracindei','1984-01-03','M','78.5','1.83','Brasil');
 
@@ -65,7 +69,8 @@ values
     definida nos campos então não precisamos dizer os campos igual o exemplo abaixo*/
     
     insert into pessoas values
-    (default,'Neuza','1996-12-30','F','50.2','1.65',default);/*No lugar id e nacionalidade coloquei default que é padrão si ele estiver como alto incremento ele vai ser o padrão*/
+    (default,'Neuza','1996-12-30','F','50.2','1.65',default);/*No lugar id e nacionalidade coloquei default que é padrão si ele estiver 
+    como alto incremento ele vai ser o padrão*/
 
 /*Inserindo varios dados ao mesmo tempo*/
 insert into pessoas
@@ -130,7 +135,8 @@ show tables;/*Comando usado para pedir pro sistema exibir todas as tabelas prese
 
 /*Criando mais uma tabela*/
 create table if not exists cursos(/*if not exists ou if exists e um parametro que só vai criar uma tabela,banco de dados si ele não existir ou existir*/
-nome varchar (30) not null unique,/*Unique e o seguinte eu ñ estou dizendo que o nome e uma chave primaria ele nãao vai identificar os registros,mas ele não vai deixar colocar 2 cursos com o mesmo nome*/
+nome varchar (30) not null unique,/*Unique e o seguinte eu ñ estou dizendo que o nome e uma chave primaria ele nãao vai identificar os registros,
+mas ele não vai deixar colocar 2 cursos com o mesmo nome*/
 descricao text,/*text e usado para textos longos*/
 carga int unsigned,/*significa sem sinal,só armazena numero positivos,vai economizar um bit para cada registro que tem carga registrada*/
 totaulas int,
