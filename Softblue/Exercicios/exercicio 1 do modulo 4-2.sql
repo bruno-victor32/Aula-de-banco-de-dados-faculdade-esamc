@@ -1,6 +1,9 @@
 /*CRIANDO O BANCO DE DADOS*/
 create database softblue default charset=latin1;
 
+/*DELETAR UM BANCO DE DADOS*/
+Drop database softblue;
+
 /*SELECIONANDO O BANCO DE DADOS*/
 use softblue;
 
@@ -68,6 +71,10 @@ CREATE TABLE PEDIDO_DETALHE (
 	FOREIGN KEY(CURSO) REFERENCES CURSO(CODIGO)		-- Cria o relacionamento (FK) com a tabela CURSO
 );
 
+show tables;
+select*from aluno;
+describe aluno;
+
 -- Inclua a coluna DATA_NASCIMENTO na tabela ALUNO do tipo string,de tamanho 10 caracteres--
 ALTER TABLE aluno ADD data_nascimento VARCHAR(10);
 
@@ -80,14 +87,96 @@ alter table aluno change data_nascimento nascimento date null;
 -- Crie um novo índice na tabela ALUNO, para o campo ALUNO --
 alter table aluno add index index_aluno(aluno);
 
+describe instrutor;
+
 -- Inclua a coluna email na tabela INSTRUTOR do tipo string,de tamanho 100caracteres--
 ALTER TABLE INSTRUTOR ADD EMAIL VARCHAR(100);
 
+describe curso;index_aluno
 -- Crie um novo índice na tabela CURSO, para o campo INSTRUTOR
 --
-ALTER TABLE CURSO ADD INDEX INDEX_INSTRUTOR(INSTRUTOR);
+ALTER TABLE curso ADD INDEX INDEX_INSTRUTOR(INSTRUTOR);
 
 --
 -- Remova o campo EMAIL da tabela INSTRUTOR
 --
 ALTER TABLE INSTRUTOR DROP EMAIL;
+
+-- INSERINDO DADOS NA TABELA TIPO --
+
+insert into tipo(tipo) values('Banco de dados'),
+							 ('Programação'),
+                             ('Modelagem de dados');
+                             
+select*from tipo;
+
+describe instrutor;
+
+insert into instrutor(instrutor,telefone) values('André Milani','1111-1111'),
+												('Carlos Tosin','1212-1212');
+                                                
+select*from curso;
+
+insert into curso(curso,tipo,instrutor,valor) values('Java Fundamentos','2','2','270'),
+												    ('Java Avançado','2','2','330'),
+                                                    ('SQL Completo','1','1','170'),
+                                                    ('Php Básico','2','1','272');
+                                                    
+select*from aluno;
+
+insert into aluno(aluno,endereco,email) values(' José',' Rua XV de Novembro 72','jose@softblue.com.br'),
+												    (' Wagner',' Av. Paulista','wagner@softblue.com.br'),
+                                                    (' Emílio',' Rua Lajes 103, ap: 701','emilio@softblue.com.br'),
+                                                    (' Cris',' Rua Tauney 22','cris@softblue.com.br'),
+                                                    (' Regina',' Rua Salles 305','regina@softblue.com.br'),
+                                                    (' Fernando',' Av. Central 30','fernando@softblue.com.br');
+                                                
+                                                
+select*from pedido;
+desc pedido;
+
+insert into pedido(aluno,datahora) values(' 2','15/04/2010 11:23:32'),
+										(' 2','15/04/2010  14:36:21'),
+										(' 3','16/04/2010  11:17:45'),
+                                        (' 4','17/04/2010  14:27:22'),
+                                        (' 5','18/04/2010  11:18:19'),
+										(' 6','19/04/2010  13:47:35'),
+                                        (' 6','20/04/2010  18:13:44');
+                                        
+                                        -- Tabela PEDIDO:
+--
+INSERT INTO PEDIDO (CODIGO, ALUNO, DATAHORA) VALUES (1, 2, '2010-04-15 11:23:32');
+INSERT INTO PEDIDO VALUES (2, 2, '2010-04-15 14:36:21');
+INSERT INTO PEDIDO VALUES (3, 3, '2010-04-16 11:17:45');
+INSERT INTO PEDIDO VALUES (4, 4, '2010-04-17 14:27:22');
+INSERT INTO PEDIDO VALUES (5, 5, '2010-04-18 11:18:19');
+INSERT INTO PEDIDO VALUES (6, 6, '2010-04-19 13:47:35');
+INSERT INTO PEDIDO VALUES (7, 6, '2010-04-20 18:13:44');
+
+desc pedido_detalhe;
+select*from pedido_detalhe;
+
+insert into pedido_detalhe(pedido,curso,valor) values(1,1,'270'),
+										(1,2,'330'),
+										(' 2','1',270),
+                                        (' 2','2',330),
+                                        (' 2','3',170),
+										(' 3','4',270),
+                                        (' 4','2',330),
+										(' 4','4',270),
+                                        (' 5','3',170),
+										(' 6','3',170),
+                                        (' 7','4',270);
+                                        
+/*Exibir todas as informações de todos os alunos;*/                                        
+select*from aluno;
+
+-- Exibir somente o título de cada curso da Softblue --
+select * from curso;
+
+SELECT CURSO, VALOR FROM CURSO WHERE VALOR > 200;
+
+select a.pedido,
+	   a.curso,
+       b.nome
+       from pedido_detalhe a left join curso b on (a.id_banco = b.id)
